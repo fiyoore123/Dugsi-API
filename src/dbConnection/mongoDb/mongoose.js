@@ -1,10 +1,10 @@
 let mongoose = require('mongoose');
 const errors = require('../../api/shared/errors');
-
+require('dotenv').config();
 
 
 function getMongoDbConnection(next) {
-    let conString =  "mongodb+srv://fiyoore:fiyoore_123@cluster0.nzssu.mongodb.net/Students?retryWrites=true&w=majority";
+    let conString =  process.env.CONNECTION_STRING;
     mongoose.connect(conString,function (conError,con){
         if (conError) {
             next(errors.dbConnectionFailed,null);
